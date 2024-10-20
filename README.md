@@ -1,2 +1,2 @@
-# BookBot
-BookBot is my first project!
+# Book Robot
+Gives a report of any book text file
