@@ -1,3 +1,4 @@
+import sys
 from collections import Counter
 
 
@@ -12,12 +13,15 @@ def count_characters(text):
     return dict(Counter(char for char in text if char.isalpha()))
 
 def main():
+    #Checking if filename was provided as a cmd line arg
+    if len(sys.argv) !=2:
+        print("Use: python<the python ver you are using>  main.py <filename>")
+        return
+    book_file = f'books/{sys.argv[1]}' #book name from cmd line
 
-
-    book_file = 'books/frankenstein.txt'
-    
-    with open(book_file, 'r') as f:
-        file_content = f.read()
+    try:    
+        with open(book_file, 'r') as f:
+         file_content = f.read()
         print(file_content)
 
         print(f"--- Begin report of {book_file} ---")
@@ -29,6 +33,9 @@ def main():
         print("Charcter counts", char_count)
         
         report(book_file,word_count,char_count)
+
+    except FileNotFoundError:
+        print(f"Error: The file '{book_file}' not found.")    
 
 
 def report(book_file, word_count,char_count):
